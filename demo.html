@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YT Agent Demo</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; background-color: #f0f0f0; }
+        .container { max-width: 800px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        button { padding: 10px 20px; margin: 10px; background: #007bff; color: white; border: none; border-radius: 4px; cursor: pointer; }
+        button:hover { background: #0056b3; }
+        .step { margin: 20px 0; padding: 10px; border-left: 4px solid #007bff; background: #e9ecef; }
+        #output { margin-top: 20px; padding: 10px; background: #f8f9fa; border: 1px solid #dee2e6; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>YT Agent Demo - End-to-End Flow</h1>
+        <p>This demo simulates the AI video automation workflow integrating with TikTok Content Posting API.</p>
+
+        <div class="step">
+            <h3>Step 1: YouTube Search</h3>
+            <p>Search YouTube for videos using the Data API.</p>
+            <button onclick="searchYouTube()">Search YouTube</button>
+        </div>
+
+        <div class="step">
+            <h3>Step 2: Video Processing</h3>
+            <p>Retrieve video from database, analyze with AI, generate short using Klap API.</p>
+            <button onclick="processVideo()">Process Video</button>
+        </div>
+
+        <div class="step">
+            <h3>Step 3: Upload to TikTok</h3>
+            <p>Upload generated short to TikTok using Content Posting API (scopes: video.publish, user.info.basic).</p>
+            <button onclick="uploadToTikTok()">Upload to TikTok</button>
+        </div>
+
+        <div class="step">
+            <h3>Step 4: Upload to YouTube</h3>
+            <p>Upload short to YouTube using Upload API.</p>
+            <button onclick="uploadToYouTube()">Upload to YouTube</button>
+        </div>
+
+        <div id="output">
+            <h4>Demo Output:</h4>
+            <p id="demoOutput">Click buttons to simulate the flow.</p>
+        </div>
+    </div>
+
+    <script>
+        let step = 0;
+        const output = document.getElementById('demoOutput');
+
+        function searchYouTube() {
+            output.innerHTML = "Searching YouTube for 'AI tutorials'... Found 10 videos. Stored in database with status 'Not Created'.";
+            step = 1;
+        }
+
+        function processVideo() {
+            if (step < 1) { alert("Complete Step 1 first!"); return; }
+            output.innerHTML += "<br><br>Retrieved video from DB. Analyzing with GPT-4o-mini... Generated ideas. Creating short with Klap API... Task submitted, polling for completion... Short generated: short.mp4";
+            step = 2;
+        }
+
+        function uploadToTikTok() {
+            if (step < 2) { alert("Complete Step 2 first!"); return; }
+            output.innerHTML += "<br><br>Initiating TikTok OAuth... (Simulated redirect to TikTok login). User authorizes app. Received access token. Posting video with Content Posting API... Video uploaded successfully to TikTok profile.";
+            step = 3;
+        }
+
+        function uploadToYouTube() {
+            if (step < 3) { alert("Complete Step 3 first!"); return; }
+            output.innerHTML += "<br><br>Uploading to YouTube... Video posted successfully.";
+            output.innerHTML += "<br><br><strong>End-to-End Flow Complete!</strong>";
+        }
+    </script>
+</body>
+</html>
