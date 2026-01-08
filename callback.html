@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OAuth Callback</title>
+</head>
+<body>
+    <h1>TikTok OAuth Callback</h1>
+    <p>Authorization successful! Code received: <span id="code">demo_code_123</span></p>
+    <p>In the real app, this code would be exchanged for an access token to post videos.</p>
+    <button onclick="window.close()">Close</button>
+    <script>
+        // Simulate getting code from URL params
+        const urlParams = new URLSearchParams(window.location.search);
+        const code = urlParams.get('code') || 'demo_code_123';
+        document.getElementById('code').innerText = code;
+    </script>
+</body>
+</html>
